@@ -1,20 +1,19 @@
 /* ===== 1. VARIÁVEIS ===== */
 :root {
     --cor-escura: #333;
-    --corclara: #fff;
+    --cor-clara: #fff;
     --cor-destaque: #007bff;
-    --cor-destaque-hover:
-        #0056b3;
+    --cor-destaque-hover: #0056b3;
     --cor-fundo-alt: #f4f4f4;
     --borda: 1px solid #ddd;
-    -- raio: 8px;
+    --raio: 8px;
 }
 
 /* ===== 2. RESET BÁSICO ===== */
 * {
     margin: 0;
     padding: 0;
-    boxsizing: border-box;
+    box-sizing: border-box;
 }
 
 body {
@@ -22,11 +21,8 @@ body {
     line-height: 1.6;
     color: var(--cor-escura);
     display: flex;
-    /* Flexbox:
-header, main e footer em coluna */
     flex-direction: column;
-    minheight: 100vh;
-    /* Footer sempre no fim da tela */
+    min-height: 100vh;
 }
 
 /* ===== 3. HEADER (Flexbox) ===== */
@@ -34,7 +30,7 @@ header {
     display: flex;
     justify-content: center;
     padding: 20px;
-    background-color: var(-- cor-escura);
+    background-color: var(--cor-escura);
     color: var(--cor-clara);
 }
 
@@ -45,7 +41,6 @@ header h1 {
 /* ===== 4. CONTAINER PRINCIPAL ===== */
 .container {
     flex: 1;
-    /* Ocupa o espaço disponível */
     width: 100%;
     max-width: 1100px;
     margin: 0 auto;
@@ -54,8 +49,7 @@ header h1 {
 
 /* ===== 5. SEÇÃO DE PERFIL (Flexbox) ===== */
 .profile {
-    display:
-        flex;
+    display: flex;
     align-items: center;
     gap: 20px;
     padding: 20px 0;
@@ -67,9 +61,7 @@ header h1 {
     height: 100px;
     border-radius: 50%;
     object-fit: cover;
-    /* Evita distorção da foto */
-    flex-shrink:
-        0;
+    flex-shrink: 0;
 }
 
 /* ===== 6. PAINEL DE INFORMAÇÕES (CSS Grid) ===== */
@@ -82,7 +74,7 @@ header h1 {
 
 /* ===== 7. COLUNA EXTRA ===== */
 .extras {
-    background-color: var(-- cor-fundo-alt);
+    background-color: var(--cor-fundo-alt);
     padding: 16px;
     border-radius: var(--raio);
 }
@@ -94,29 +86,26 @@ header h1 {
 /* ===== 8. FOOTER ===== */
 footer {
     display: flex;
-    justify-content:
-        center;
+    justify-content: center;
     padding: 20px;
     background-color: var(--cor-escura);
 }
 
 .action-btn {
     padding: 10px 20px;
-    background-color: var(--cordestaque);
+    background-color: var(--cor-destaque);
     color: var(--cor-clara);
     border: none;
-    border-radius:
-        5px;
+    border-radius: 5px;
     cursor: pointer;
     font-size: 1rem;
-    transition: backgroundcolor 0.2s ease-in-out, transform 0.2s ease-in-out;
+    transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
 }
 
 /* ===== 9. PSEUDOELEMENTOS E PSEUDOCLASSES ===== */
 /* Marcador decorativo antes do título */
 header h1::before {
-    content:
-        "‣";
+    content: "‣ ";
     margin-right: 10px;
     color: var(--cor-destaque);
 }
@@ -129,8 +118,7 @@ header h1::before {
     height: 3px;
     margin-top: 4px;
     background-color: var(--cor-destaque);
-    transition:
-        width 0.3s ease;
+    transition: width 0.3s ease;
 }
 
 .profile:hover .profile-info h2::after {
@@ -138,14 +126,13 @@ header h1::before {
 }
 
 /* Blocos alternados no painel (nth-child) */
-.info-panel>div:nthchild(even) {
+.info-panel > div:nth-child(even) {
     background-color: var(--cor-fundo-alt);
-    padding:
-        12px;
+    padding: 12px;
     border-radius: var(--raio);
 }
 
-.info-panel>div:nth-child(odd) {
+.info-panel > div:nth-child(odd) {
     padding: 12px;
     border-left: 4px solid var(--cor-destaque);
 }
@@ -158,24 +145,22 @@ header h1::before {
 
 .social-media a:hover,
 .social-media a:focus-visible {
-    text-decoration:
-        underline;
+    text-decoration: underline;
     outline: 2px solid var(--cor-destaque);
-    outline-offset:
-        2px;
+    outline-offset: 2px;
 }
 
 /* Ícone no botão */
 .action-btn::after {
     content: " ➜";
-    fontweight: bold;
+    font-weight: bold;
     font-size: 1.2rem;
     margin-left: 5px;
 }
 
 /* Estados do botão */
 .action-btn:hover {
-    background-color: var(--cordestaque-hover);
+    background-color: var(--cor-destaque-hover);
     transform: scale(1.05);
 }
 
@@ -206,7 +191,7 @@ header h1::before {
 
     .profile-info h2::after {
         margin-left: auto;
-        marginright: auto;
+        margin-right: auto;
     }
 
     .info-panel {
@@ -218,14 +203,15 @@ header h1::before {
     }
 }
 
-/* ===== 11. DESAFIO: TELAS GRANDES (1200px +) ===== */
+/* ===== 11. TELAS GRANDES (1200px +) ===== */
 @media (min-width: 1200px) {
     .container {
         max-width: 1280px;
         display: grid;
         grid-template-columns: 2fr 1fr;
         grid-template-areas:
-            "perfil extras" "info extras";
+            "perfil extras" 
+            "info extras";
         gap: 24px;
         align-items: start;
     }
@@ -235,18 +221,14 @@ header h1::before {
         border-bottom: none;
     }
 
-    .infopanel {
+    .info-panel {
         grid-area: info;
+        grid-template-columns: repeat(3, 1fr);
     }
 
     .extras {
         grid-area: extras;
         position: sticky;
         top: 20px;
-    }
-
-    /* Três colunas dentro do painel de informações */
-    .info-panel {
-        grid-template-columns: repeat(3, 1fr);
     }
 }
