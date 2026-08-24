@@ -1,0 +1,252 @@
+/* ===== 1. VARIÁVEIS ===== */
+:root {
+    --cor-escura: #333;
+    --corclara: #fff;
+    --cor-destaque: #007bff;
+    --cor-destaque-hover:
+        #0056b3;
+    --cor-fundo-alt: #f4f4f4;
+    --borda: 1px solid #ddd;
+    -- raio: 8px;
+}
+
+/* ===== 2. RESET BÁSICO ===== */
+* {
+    margin: 0;
+    padding: 0;
+    boxsizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+    color: var(--cor-escura);
+    display: flex;
+    /* Flexbox:
+header, main e footer em coluna */
+    flex-direction: column;
+    minheight: 100vh;
+    /* Footer sempre no fim da tela */
+}
+
+/* ===== 3. HEADER (Flexbox) ===== */
+header {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    background-color: var(-- cor-escura);
+    color: var(--cor-clara);
+}
+
+header h1 {
+    font-size: 1.8rem;
+}
+
+/* ===== 4. CONTAINER PRINCIPAL ===== */
+.container {
+    flex: 1;
+    /* Ocupa o espaço disponível */
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* ===== 5. SEÇÃO DE PERFIL (Flexbox) ===== */
+.profile {
+    display:
+        flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 0;
+    border-bottom: var(--borda);
+}
+
+.profile-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    /* Evita distorção da foto */
+    flex-shrink:
+        0;
+}
+
+/* ===== 6. PAINEL DE INFORMAÇÕES (CSS Grid) ===== */
+.info-panel {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 20px 0;
+}
+
+/* ===== 7. COLUNA EXTRA ===== */
+.extras {
+    background-color: var(-- cor-fundo-alt);
+    padding: 16px;
+    border-radius: var(--raio);
+}
+
+.extras ul {
+    list-style-position: inside;
+}
+
+/* ===== 8. FOOTER ===== */
+footer {
+    display: flex;
+    justify-content:
+        center;
+    padding: 20px;
+    background-color: var(--cor-escura);
+}
+
+.action-btn {
+    padding: 10px 20px;
+    background-color: var(--cordestaque);
+    color: var(--cor-clara);
+    border: none;
+    border-radius:
+        5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: backgroundcolor 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+/* ===== 9. PSEUDOELEMENTOS E PSEUDOCLASSES ===== */
+/* Marcador decorativo antes do título */
+header h1::before {
+    content:
+        "‣";
+    margin-right: 10px;
+    color: var(--cor-destaque);
+}
+
+/* Linha animada sob o nome do usuário */
+.profile-info h2::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 3px;
+    margin-top: 4px;
+    background-color: var(--cor-destaque);
+    transition:
+        width 0.3s ease;
+}
+
+.profile:hover .profile-info h2::after {
+    width: 140px;
+}
+
+/* Blocos alternados no painel (nth-child) */
+.info-panel>div:nthchild(even) {
+    background-color: var(--cor-fundo-alt);
+    padding:
+        12px;
+    border-radius: var(--raio);
+}
+
+.info-panel>div:nth-child(odd) {
+    padding: 12px;
+    border-left: 4px solid var(--cor-destaque);
+}
+
+/* Links: hover + foco por teclado (acessibilidade) */
+.social-media a {
+    color: var(--cor-destaque);
+    text-decoration: none;
+}
+
+.social-media a:hover,
+.social-media a:focus-visible {
+    text-decoration:
+        underline;
+    outline: 2px solid var(--cor-destaque);
+    outline-offset:
+        2px;
+}
+
+/* Ícone no botão */
+.action-btn::after {
+    content: " ➜";
+    fontweight: bold;
+    font-size: 1.2rem;
+    margin-left: 5px;
+}
+
+/* Estados do botão */
+.action-btn:hover {
+    background-color: var(--cordestaque-hover);
+    transform: scale(1.05);
+}
+
+.action-btn:active {
+    transform: scale(0.98);
+}
+
+.action-btn:focus-visible {
+    outline: 3px solid var(--cor-clara);
+    outline-offset: 2px;
+}
+
+/* ===== 10. CELULAR (até 600px) ===== */
+@media (max-width: 600px) {
+    header {
+        padding: 15px;
+    }
+
+    header h1 {
+        font-size: 1.4rem;
+    }
+
+    .profile {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .profile-info h2::after {
+        margin-left: auto;
+        marginright: auto;
+    }
+
+    .info-panel {
+        grid-template-columns: 1fr;
+    }
+
+    .action-btn {
+        width: 100%;
+    }
+}
+
+/* ===== 11. DESAFIO: TELAS GRANDES (1200px +) ===== */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1280px;
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        grid-template-areas:
+            "perfil extras" "info extras";
+        gap: 24px;
+        align-items: start;
+    }
+
+    .profile {
+        grid-area: perfil;
+        border-bottom: none;
+    }
+
+    .infopanel {
+        grid-area: info;
+    }
+
+    .extras {
+        grid-area: extras;
+        position: sticky;
+        top: 20px;
+    }
+
+    /* Três colunas dentro do painel de informações */
+    .info-panel {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
